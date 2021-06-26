@@ -9,10 +9,10 @@ import { getPosts } from "./actions/posts";
 const App = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-
+  const [currentId, setCurrentId] = React.useState(null);
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch]);
+  }, [currentId, dispatch]);
   return (
     <Container maxidth="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
@@ -35,11 +35,11 @@ const App = () => {
             spacing={3}
           >
             <Grid item xs={12} sm={7}>
-              <Posts />
+              <Posts setCurrentId={setCurrentId} />
             </Grid>
 
             <Grid item xs={12} sm={4}>
-              <Form />
+              <Form currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
           </Grid>
         </Container>
